@@ -1,0 +1,63 @@
+Developer HOWTO for Miradi Report XSLT work
+
+BACKGROUND/GOALS
+
+Miradi is a tool to help manage environmental biodiversity 
+conservation projects around the world. It helps teams use 
+the Open Standards process and use best practices. It is 
+a desktop application written using Java and Swing.
+
+Until recently, the main way to produce reports from Miradi 
+has been to use an internal reporting system that generates 
+RTF output. This system is written in Java, and is hard to 
+maintain, makes it hard to create reports, is not extensible 
+by end-users, and requires a new release to change anything 
+at all.
+
+A couple releases ago, we added the ability for Miradi to 
+output an entire project in an XML file, controlled by a 
+schema (in Relax-NG-Compact ".rnc" form). Using this XML 
+as the input, it is possible to create fancy XSL templates 
+to produce almost any output imaginable. Two organizations 
+that use Miradi have already started developing XSLT files 
+for their own custom reports.
+
+Our goal is to create additional sample XSL templates to 
+show users what is possible with this new system. We also 
+hope to replicate all the existing RTF report output formats 
+using XSLT templates, so we can get rid of the RTF engine 
+altogether.
+
+
+XSLT SOFTWARE REQUIREMENTS
+
+We are targeting the XSLT 2.0 standard, which means the 
+Xalan tool will not work. Microsoft Word could be used, but 
+we recommend using the Saxon command-line tools:
+
+  http://saxon.sourceforge.net/
+  http://www.saxonica.com/  
+
+SAMPLES
+
+The samples directory contains both a sample Miradi 3.3 
+project in XML form (MarineExample-3.3.xml) and several 
+sample XSL files. There is also a copy of the RNC schema. 
+
+Assuming you have saxon installed, you can produce HTML 
+output by changing to the samples directory and running
+this command (all on one line):
+
+  java -jar <path-to-saxon-jar> 
+      -s MarineExample-3.3.xml 
+      -xsl 1_Management-Plan-html_V2-1.xsl
+  
+
+REQUESTED REPORTS
+
+We would like to replicate the output of the built-in 
+RTF reports, but using XSL to produce HTML output. The 
+easiest way to see these reports is to run Miradi and 
+open the Marine Example project that comes with it.
+
+From the Reports view, 
