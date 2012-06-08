@@ -41,17 +41,31 @@ we recommend using the Saxon command-line tools:
 SAMPLES
 
 The samples directory contains both a sample Miradi 3.3 
-project in XML form (MarineExample-3.3.xml) and several 
-sample XSL files. There is also a copy of the RNC schema. 
+project in XML form (MarineExample-v1.xml) and several 
+sample XSL files. There is also a copy of the RNC schema 
+(Miradi-v1.rnc). 
 
 Assuming you have saxon installed, you can produce HTML 
 output by changing to the samples directory and running
 this command (all on one line):
 
   java -jar <path-to-saxon-jar> 
-      -s MarineExample-3.3.xml 
-      -xsl 1_Management-Plan-html_V2-1.xsl
+      MarineExample-3.3.xml 
+      1_Management-Plan-html_V2-1.xsl
   
+**NOTE** Two of the sample XSLT files do not work:
+
+"2_Five-year-WorkPlan-Html_V2-0.xsl" gives an error, 
+which might be caused by using an MS-Word-specific 
+feature.
+
+"3_Ecosystem-Profile_V2-0.xsl" produces unformatted 
+output. We have seen similar behavior when the XML 
+namespace was wrong, or when we were running XSLT 2.0 
+templates through a 1.0 XSL processor. So there is 
+most likely some compatibility issue between this XSL 
+file and saxon.
+
 
 REQUESTED REPORTS
 
@@ -60,4 +74,30 @@ RTF reports, but using XSL to produce HTML output. The
 easiest way to see these reports is to run Miradi and 
 open the Marine Example project that comes with it.
 
-From the Reports view, 
+The Reports view lists a "Full Report" at the top, which 
+is simply a way to run all the other listed reports at 
+once. The Conceptual Model and Results Chains reports 
+are highly graphical, so can be ignored for now.
+
+The rest of the reports we would like to replicate in 
+XSL:
+- Target Viability
+- Threat Ratings
+- Action Plan
+- Monitoring Plan
+- Work Plan
+- Progress Report
+
+Most if not all of them follow the same pattern: First, 
+there is a table with one row per item of that type. Then 
+the details for each item are presented in a format that 
+is typically one field per row.
+
+Several of the "tables" are actually trees, with nested 
+indentation.
+ 
+Unfortunately, none of the sample XSL templates follow 
+these patterns. They were developed to produce very 
+specific custom output. However, we hope that the XSL 
+code used will be helpful as a starting point for 
+creating the simpler standard reports.
