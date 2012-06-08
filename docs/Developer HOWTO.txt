@@ -5,7 +5,8 @@ BACKGROUND/GOALS
 Miradi is a tool to help manage environmental biodiversity 
 conservation projects around the world. It helps teams use 
 the Open Standards process and use best practices. It is 
-a desktop application written using Java and Swing.
+a desktop application written using Java and Swing. To learn 
+more about Miradi, visit https://miradi.org
 
 Until recently, the main way to produce reports from Miradi 
 has been to use an internal reporting system that generates 
@@ -36,7 +37,22 @@ Xalan tool will not work. Microsoft Word could be used, but
 we recommend using the Saxon command-line tools:
 
   http://saxon.sourceforge.net/
-  http://www.saxonica.com/  
+  http://www.saxonica.com/ 
+  
+You can use a browser to view the transformed data. However, 
+there are various limitations:
+
+1. You must insert a line like this before the first data line 
+in the XML (before the <ConservationProject>):
+
+<?xml-stylesheet type="text/xsl" href="1.xsl" media="screen" ?>
+
+2. Firefox only supports XSLT 1.0 unless you use the Saxon add-on.
+Other browsers probably also only support XSLT 1.0.
+
+3. Chrome will not apply a local (file://) XSL file. You will need 
+to copy the XML and XSL to a server and view it via http://
+  
 
 SAMPLES
 
